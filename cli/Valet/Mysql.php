@@ -53,7 +53,7 @@ class Mysql
      *
      * @param $type
      */
-    public function install($type = 'mysql@5.7')
+    public function install($type = 'mysql')
     {
         $this->verifyType($type);
         $currentlyInstalled = $this->installedVersion();
@@ -102,7 +102,7 @@ class Mysql
      */
     public function supportedVersions()
     {
-        return ['mysql@5.7', 'mariadb'];
+        return ['mysql', 'mysql@5.7', 'mariadb', 'mariadb@10.3'];
     }
 
     /**
@@ -158,7 +158,7 @@ class Mysql
         }
 
         $contents = $this->files->get(__DIR__ . '/../stubs/my.cnf');
-        if ($type === 'mariadb') {
+        if ($type === 'mariadb@10.3') {
             $contents = \str_replace('show_compatibility_56=ON', '', $contents);
         }
 
